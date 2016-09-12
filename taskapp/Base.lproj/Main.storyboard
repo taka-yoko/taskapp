@@ -21,9 +21,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNj-Qr-1ue">
                                 <rect key="frame" x="0.0" y="64" width="414" height="628"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="Ztm-0p-ZhB">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="PeU-uK-Un0" detailTextLabel="cz0-xY-J5V" style="IBUITableViewCellStyleSubtitle" id="FM4-4J-sfg">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="72" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FM4-4J-sfg" id="wXo-Pd-GJV">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -72,6 +77,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="searchBar" destination="Ztm-0p-ZhB" id="dKp-jS-aed"/>
                         <outlet property="tableView" destination="NNj-Qr-1ue" id="Nck-wE-8Kq"/>
                         <segue destination="ZwB-ff-Kfg" kind="show" identifier="cellSegue" id="WbT-eK-sfS"/>
                     </connections>

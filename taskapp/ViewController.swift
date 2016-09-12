@@ -9,9 +9,11 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     //Realmインスタンスを取得する
     let realm = try! Realm()
@@ -19,10 +21,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // DB内のタスクが格納されるリスト。
     // 日付近い順でソート：降順
     // 以降内容をアップデートするとリスト内は自動的に更新される。
-    let taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
+    var taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
+        searchBar.enablesReturnKeyAutomatically = false
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -117,6 +123,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+    
+    //検索ボタン押下時の呼び出しメソッド
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        //キーボードを閉じる
+        searchBar.endEditing(true)
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == "" {
+            taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
+        }else{
+            taskArray = realm.objects(Task).filter("category contains '\(searchBar.text!)'")
+        }
+        tableView.reloadData()
+    }
+    
 
 }
 
