@@ -134,7 +134,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if searchBar.text == "" {
             taskArray = try! Realm().objects(Task).sorted("date", ascending: false)
         }else{
-            taskArray = realm.objects(Task).filter("category contains '\(searchBar.text!)'")
+            taskArray = realm.objects(Task).filter("category contains[c] '\(searchBar.text!)'")
         }
         tableView.reloadData()
     }
